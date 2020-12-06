@@ -2,9 +2,6 @@
 #'
 #' A wrapper for \link[googleAuthR]{gar_auth} and \link[googleAuthR]{gar_auth_service}
 #'
-#' @param new_user If TRUE, reauthenticate via Google login screen
-#' @param no_auto Will ignore auto-authentication settings if TRUE
-#'
 #' If you have set the environment variable \code{GCE_AUTH_FILE} to a valid file location,
 #'   the function will look there for authentication details.
 #' Otherwise it will look in the working directory for the `.httr-oauth` file, which if not present
@@ -20,16 +17,17 @@
 #' @return Invisibly, the token that has been saved to the session
 #' @import googleAuthR
 #' @export
-gtm_auth <- function(new_user = FALSE, no_auto = FALSE){
+gtm_auth <- function(){
   
   required_scopes <- c("https://www.googleapis.com/auth/tagmanager.readonly",
                        "https://www.googleapis.com/auth/tagmanager.edit.containers")
   
   googleAuthR::gar_auto_auth(required_scopes,
-                             new_user = new_user,
-                             no_auto = no_auto,
-                             environment_var = "",
-                             travis_environment_var = "")
+                             #new_user = new_user,
+                             #no_auto = no_auto,
+                             environment_var = ""
+                             #,travis_environment_var = ""
+                             )
 }
 
 

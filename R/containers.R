@@ -34,3 +34,30 @@ gtm_get_container <- function(accountId,
   container()
   
 }
+
+#' GTM create a container
+#'
+#' Create a GTM container
+#'
+#' @param accountId Add your GTM account ID
+#' @param containerName Name of the container you want to create
+#' @param containerType Type of container (web or amp)
+#' @param containerDomain Domainname related to the container (optional)
+#' @export
+#'
+gtm_create_container <- function(accountId, containerName, containerType, containerDomain = NULL){
+  
+  list(containerType) -> containerType
+  list(containerDomain) -> containerDomain
+  
+  cont_url <- paste("https://www.googleapis.com/tagmanager/v2/accounts/",accountId, "/containers", sep = "")
+  body = list(
+    name = containerName,
+    usageContext = containerType,
+    domainName = containerDomain
+  )
+  
+  f <- gar_api_generator(cont_url,
+                         "POST")
+  f(the_body = body)
+}

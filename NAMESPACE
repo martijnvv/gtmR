@@ -3,6 +3,8 @@
 export(gtm_auth)
 export(gtm_change_account)
 export(gtm_container_version)
+export(gtm_create_container)
+export(gtm_create_folder)
 export(gtm_get_account)
 export(gtm_get_container)
 export(gtm_get_variables)
