@@ -4,12 +4,14 @@
 \alias{gtm_list_tags}
 \title{GTM tags list}
 \usage{
-gtm_list_tags(accountId, containerId)
+gtm_list_tags(accountId, containerId, workspaceId)
 }
 \arguments{
 \item{accountId}{Add your GTM account ID}
 
 \item{containerId}{Add your GTM container ID}
+
+\item{workspaceId}{Add the workspace ID from your container}
 }
 \description{
 Downloads all GTM tags that are enabled in the current workspace, container

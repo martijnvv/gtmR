@@ -4,12 +4,14 @@
 \alias{gtm_list_variables}
 \title{List GTM variables}
 \usage{
-gtm_list_variables(accountId, containerId)
+gtm_list_variables(accountId, containerId, workspaceId)
 }
 \arguments{
 \item{accountId}{GTM account ID}
 
 \item{containerId}{GTM Container ID}
+
+\item{workspaceId}{Add the workspace ID from your container}
 }
 \value{
 Dataframe of accountId, name

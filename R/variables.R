@@ -2,11 +2,12 @@
 #' 
 #' @param accountId GTM account ID
 #' @param containerId GTM Container ID
+#' @param workspaceId Add the workspace ID from your container
 #'
 #' @return Dataframe of accountId, name
 #' @export
 gtm_list_variables <- function(accountId,
-                               containerId){
+                               containerId, workspaceId){
   
   # build_url <- sprintf("https://www.googleapis.com/tagmanager/v1/accounts/%s/containers/%s/variables",
   #                      accountId, containerId)
@@ -17,10 +18,10 @@ gtm_list_variables <- function(accountId,
   # 
   # vars()
   
-  gtm_workspace_id(accountId, containerId) -> ws
-  cont_url <- paste("https://www.googleapis.com/tagmanager/v2/accounts/",accountId,"/containers", sep = "")
-  var_url <- paste(cont_url,"/",containerId, "/workspaces/",  ws, "/variables", sep = "")
-  f_var <- gar_api_generator(var_url,
+  build_url <- sprintf("https://www.googleapis.com/tagmanager/v2/accounts/%s/containers/%s/workspaces/%s/variables",
+                       accountId, containerId, workspaceId)
+  
+  f_var <- googleAuthR::gar_api_generator(build_url,
                              "GET")
   variable_list <- f_var()
   as.data.frame(variable_list$content)
@@ -58,13 +59,15 @@ gtm_get_variables <- function(accountId,
 #'
 #' @param accountId Add your GTM account ID
 #' @param containerId Add your GTM container ID
+#' @param workspaceId Add the workspace ID from your container
 #' @export
 #'
-gtm_list_builtin <- function(accountId,containerId){
-  gtm_workspace_id(accountId,containerId) -> v
-  cont_url <- paste("https://www.googleapis.com/tagmanager/v2/accounts/",accountId,"/containers", sep = "")
-  ver_url <- paste(cont_url,"/",containerId, "/workspaces/",v, "/built_in_variables", sep = "")
-  f_ver <- googleAuthR::gar_api_generator(ver_url,
+gtm_list_builtin <- function(accountId,containerId, workspaceId){
+
+  build_url <- sprintf("https://www.googleapis.com/tagmanager/v2/accounts/%s/containers/%s/workspaces/%s/built_in_variables",
+                       accountId, containerId, workspaceId)
+  
+  f_ver <- googleAuthR::gar_api_generator(build_url,
                                           "GET")
   ver_list <- f_ver()
   ver_list$content$builtInVariable[,c("name", "type")]

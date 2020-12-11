@@ -4,12 +4,14 @@
 \alias{gtm_list_triggers}
 \title{GTM triggers list}
 \usage{
-gtm_list_triggers(accountId, containerId)
+gtm_list_triggers(accountId, containerId, workspaceId)
 }
 \arguments{
 \item{accountId}{Add your GTM account ID}
 
 \item{containerId}{Add your GTM container ID}
+
+\item{workspaceId}{Add the workspace ID from your container}
 }
 \description{
 Downloads all GTM triggers that are enabled in the current workspace, container

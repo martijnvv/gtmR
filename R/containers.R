@@ -6,11 +6,14 @@
 #' @export
 #'
 gtm_list_containers <- function(accountId){
-  acc_url <- "https://www.googleapis.com/tagmanager/v2/accounts"
-  f_con <- gar_api_generator(paste(acc_url, "/",accountId,"/containers", sep = ""),
+
+  build_url <- sprintf("https://www.googleapis.com/tagmanager/v2/accounts/%s/containers",
+                       accountId)
+  
+  f_con <- googleAuthR::gar_api_generator(build_url,
                              "GET")
-  c<- f_con()
-  as.data.frame(c$content)
+  
+  as.data.frame(f_con$content) 
 }
 
 
@@ -51,6 +54,7 @@ gtm_create_container <- function(accountId, containerName, containerType, contai
   list(containerDomain) -> containerDomain
   
   cont_url <- paste("https://www.googleapis.com/tagmanager/v2/accounts/",accountId, "/containers", sep = "")
+  
   body = list(
     name = containerName,
     usageContext = containerType,

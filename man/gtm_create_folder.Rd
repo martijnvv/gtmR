@@ -4,12 +4,14 @@
 \alias{gtm_create_folder}
 \title{GTM create a folder}
 \usage{
-gtm_create_folder(accountId, containerId, folderName)
+gtm_create_folder(accountId, containerId, workspaceId, folderName)
 }
 \arguments{
 \item{accountId}{Add your GTM account ID}
 
 \item{containerId}{Add your GTM container ID}
+
+\item{workspaceId}{Add the workspace ID from your container}
 
 \item{folderName}{Name of folder you would like to create}
 }
